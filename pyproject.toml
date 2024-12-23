@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pydantic-airflow-agent"
+version = "0.1.0"
+description = ""
+authors = ["Volker Janz <volker@janz.sh>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+pydantic-ai = "^0.0.14"
+colorlog = "^6.9.0"
+devtools = "^0.12.2"
+apache-airflow = "^2.10.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
