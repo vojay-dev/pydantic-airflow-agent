@@ -5,10 +5,11 @@ queries. Built with PydanticAI and Gemini 2.0.
 
 > "What's the status of our payment report DAG?" - Now you can simply ask your agent! 🚀
 
+![AI Airflow Agent](doc/ai-agent-aviation.jpg)
+
 ## Overview
 
 This project demonstrates how to:
-- 
 - Create a PydanticAI agent that interacts with Airflow's API
 - Handle natural language queries about DAG statuses
 - Return structured, type-safe responses
