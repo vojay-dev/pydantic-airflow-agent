@@ -2110,13 +2110,13 @@ files = [
 
 [[package]]
 name = "json-repair"
-version = "0.32.0"
+version = "0.33.0"
 description = "A package to repair broken json strings"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "json_repair-0.32.0-py3-none-any.whl", hash = "sha256:a06a83c62e75c69a58cda5902f5631adec567d6584413cf233b412b491cf8580"},
-    {file = "json_repair-0.32.0.tar.gz", hash = "sha256:eed776fb24dbcce5bcd200f3c254a7d70fda40405c31c97f52a5ca8cfb7cf3e4"},
+    {file = "json_repair-0.33.0-py3-none-any.whl", hash = "sha256:6285148ef06d059a3ae5de2c665c441ac20999d1248f8795faaa864fa88b796d"},
+    {file = "json_repair-0.33.0.tar.gz", hash = "sha256:1796062b8acf3b081141cb0293c80cad5f5ad29be1cd141de601361ee3e533ac"},
 ]
 
 [[package]]
@@ -2272,13 +2272,13 @@ files = [
 
 [[package]]
 name = "logfire-api"
-version = "2.9.0"
+version = "2.11.0"
 description = "Shim for the Logfire SDK which does nothing unless Logfire is installed"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "logfire_api-2.9.0-py3-none-any.whl", hash = "sha256:a3137d01bdc45f54a651a17325d42b80108a1f226db372a2e2be3e3c1a100e15"},
-    {file = "logfire_api-2.9.0.tar.gz", hash = "sha256:28866d1c6388d8b00d3fa56c52c2c85e663b6024c2d37b4bb84ccbc924ac2d69"},
+    {file = "logfire_api-2.11.0-py3-none-any.whl", hash = "sha256:c57e1494e4d97e0796dc5aad0895b527bb31aaa413d9835b74fe62c629a56b87"},
+    {file = "logfire_api-2.11.0.tar.gz", hash = "sha256:8f4405eb6c30ff5aa3a001e73010ea85725f15381680ee0835f3456d61f21de7"},
 ]
 
 [[package]]

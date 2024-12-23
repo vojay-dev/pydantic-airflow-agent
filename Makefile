@@ -10,11 +10,11 @@ help:
 	@echo "  make run-agent      - Run PydanticAI Airflow agent"
 
 .PHONY: airflow-start
-airflow-start: airflow-start
+airflow-start:
 	astro dev start
 
 .PHONY: airflow-stop
-airflow-stop: airflow-stop
+airflow-stop:
 	astro dev stop
 
 .PHONY: run-agent
