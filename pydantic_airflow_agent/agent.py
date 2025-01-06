@@ -42,12 +42,7 @@ model = VertexAIModel(
 
 airflow_agent = Agent(
     model=model,
-    system_prompt=(
-        'You are an Airflow monitoring assistant. For each request:\n'
-        '1. Use `list_dags` first to get available DAGs\n'
-        '2. Match the user request to the most relevant DAG ID\n'
-        '3. Use `get_dag_status` to fetch the DAG status details'
-    ),
+    system_prompt='You are an Airflow monitoring assistant',
     result_type=DAGStatus,
     deps_type=Deps,
     retries=2
@@ -68,7 +63,8 @@ async def list_dags(ctx: RunContext[Deps]) -> str:
 
         dags_data = response.json()['dags']
         result = json.dumps([
-            {'dag_id': dag['dag_id'], 'dag_display_name': dag['dag_display_name']} for dag in dags_data
+            {'dag_id': dag['dag_id'], 'dag_display_name': dag['dag_display_name'], 'description': dag['description']}
+            for dag in dags_data
         ])
         logger.debug(f'Available DAGs: {result}')
         return result
