@@ -103,6 +103,18 @@ async def get_dag_status(ctx: RunContext[Deps], dag_id: str) -> str:
             return f'DAG with ID {dag_id} not found'
         raise
 
+async def chat_loop(deps: Deps):
+    while True:
+        prompt = input('💬 > ')
+        if prompt.lower() in ('q', ':q', 'quit', 'exit'):
+            break
+        else:
+            result = await airflow_agent.run(prompt, deps=deps)
+            usage = result.usage()
+            print('🤖 AI Agent response:')
+            pprint(result.data)
+            print(f'LLM requests: {usage.requests}, total tokens used: {usage.total_tokens}')
+
 async def main():
     deps = Deps(
         airflow_api_base_uri='http://localhost',
@@ -111,9 +123,8 @@ async def main():
         airflow_api_pass='admin'
     )
 
-    user_request = 'The payment report for yesterday is empty, are there any known issues?'
-    result = await airflow_agent.run(user_request, deps=deps)
-    pprint(result.data)
+    # Example: The payment report for yesterday is empty, are there any known issues?
+    await chat_loop(deps)
 
 if __name__ == "__main__":
     asyncio.run(main())
