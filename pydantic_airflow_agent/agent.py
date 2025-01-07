@@ -111,7 +111,7 @@ async def main():
         airflow_api_pass='admin'
     )
 
-    user_request = 'What is the status of the DAG for our daily payment report?'
+    user_request = 'The payment report for yesterday is empty, are there any known issues?'
     result = await airflow_agent.run(user_request, deps=deps)
     pprint(result.data)
 
