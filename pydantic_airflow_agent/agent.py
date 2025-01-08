@@ -124,6 +124,7 @@ async def main():
     )
 
     # Example: The payment report for yesterday is empty, are there any known issues?
+    # Example: I saw missing newsletter data, any issues?
     await chat_loop(deps)
 
 if __name__ == "__main__":
