@@ -124,6 +124,7 @@ async def main():
     )
 
     # Example: The payment report for yesterday is empty, are there any known issues?
+    # Example: My CRM selection selected too few players, any known issues?
     # Example: I saw missing newsletter data, any issues?
     await chat_loop(deps)
 
