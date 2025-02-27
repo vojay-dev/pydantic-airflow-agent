@@ -115,11 +115,11 @@ async def trigger_dag(ctx: RunContext[Deps], dag_id: str) -> str:
     auth = (ctx.deps.airflow_api_user, ctx.deps.airflow_api_pass)
     now = datetime.now().isoformat(timespec='seconds') + 'Z'
     payload = {
-        "dag_run_id": "manual__" + now,
-        "logical_date": now,
-        "execution_date": now,
-        "conf": {},
-        "note": f"Triggered via AI Agent, with prompt: {ctx.prompt}"
+        'dag_run_id': f'manual__{now}',
+        'logical_date': now,
+        'execution_date': now,
+        'conf': {},
+        'note': f'Triggered by AI Agent, with prompt: {ctx.prompt}'
     }
 
     try:
