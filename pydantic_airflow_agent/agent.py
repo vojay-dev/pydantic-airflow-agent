@@ -2,6 +2,8 @@ import asyncio
 import json
 import logging
 from dataclasses import dataclass
+from datetime import datetime
+
 from devtools import pprint
 
 import colorlog
@@ -103,6 +105,36 @@ async def get_dag_status(ctx: RunContext[Deps], dag_id: str) -> str:
             return f'DAG with ID {dag_id} not found'
         raise
 
+@airflow_agent.tool
+async def trigger_dag(ctx: RunContext[Deps], dag_id: str) -> str:
+    """
+    Trigger a specific DAG by DAG ID.
+    """
+    logger.info(f'Triggering DAG with ID: {dag_id}')
+    uri = f'{ctx.deps.airflow_api_base_uri}:{ctx.deps.airflow_api_port}/api/v1/dags/{dag_id}/dagRuns'
+    auth = (ctx.deps.airflow_api_user, ctx.deps.airflow_api_pass)
+    now = datetime.now().isoformat(timespec='seconds') + 'Z'
+    payload = {
+        "dag_run_id": "manual__" + now,
+        "logical_date": now,
+        "execution_date": now,
+        "conf": {},
+        "note": f"Triggered via AI Agent, with prompt: {ctx.prompt}"
+    }
+
+    try:
+        async with AsyncClient() as client:
+            response = await client.post(uri, auth=auth, json=payload)
+            response.raise_for_status()
+            result = response.json()
+            logger.debug(f'Triggered DAG: {json.dumps(result)}')
+            return f'Successfully triggered DAG with ID: {dag_id}'
+
+    except httpx.HTTPStatusError as e:
+        if e.response.status_code == 404:
+            return f'DAG with ID {dag_id} not found'
+        raise
+
 async def chat_loop(deps: Deps):
     while True:
         prompt = input('💬 > ')
@@ -126,6 +158,8 @@ async def main():
     # Example: The payment report for yesterday is empty, are there any known issues?
     # Example: My CRM selection selected too few players, any known issues?
     # Example: I saw missing newsletter data, any issues?
+    # Example: Please trigger the DAG responsible for the payment report.
+    # Example: I saw missing newsletter data, please trigger the related DAG.
     await chat_loop(deps)
 
 if __name__ == "__main__":
