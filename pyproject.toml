@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
-pydantic-ai = "^0.0.14"
+pydantic-ai = "^0.0.28"
 colorlog = "^6.9.0"
 devtools = "^0.12.2"
 apache-airflow = "^2.10.4"

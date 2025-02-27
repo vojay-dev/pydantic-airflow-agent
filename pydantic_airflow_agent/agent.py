@@ -36,7 +36,7 @@ class DAGStatus(BaseModel):
     total_dag_runs: int = Field(description='Total number of DAG runs')
 
 model = VertexAIModel(
-    model_name='gemini-2.0-flash-exp',
+    model_name='gemini-2.0-flash',
     service_account_file='gcp-credentials.json'
 )
 
